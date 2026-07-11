@@ -1,11 +1,357 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta http-equiv="refresh" content="0; url=https://t.co/GEIfQFOklp">
-    <title>Redirecting...</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>earn · short</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    }
+    body {
+      min-height: 100vh;
+      background: linear-gradient(145deg, #f6f9fc 0%, #e9f2f9 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .card {
+      max-width: 480px;
+      width: 100%;
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border-radius: 42px;
+      padding: 2rem 1.8rem;
+      box-shadow: 0 20px 40px rgba(0,20,40,0.12), 0 8px 20px rgba(0,0,0,0.05);
+      border: 1px solid rgba(255,255,255,0.5);
+      transition: 0.25s ease;
+    }
+    h1 {
+      font-size: 1.9rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: #0b2b3f;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      margin-bottom: 0.5rem;
+    }
+    h1 small {
+      font-size: 1rem;
+      font-weight: 400;
+      color: #2d6a7a;
+      margin-left: auto;
+      background: #d3e5ed;
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+      letter-spacing: 0.3px;
+    }
+    .balance-box {
+      background: #0b2b3f;
+      border-radius: 32px;
+      padding: 1.4rem 1.8rem;
+      margin: 1.2rem 0 1.8rem 0;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: inset 0 2px 6px rgba(0,0,0,0.2), 0 8px 12px rgba(0,20,30,0.1);
+    }
+    .balance-label {
+      font-size: 1rem;
+      font-weight: 400;
+      opacity: 0.8;
+      letter-spacing: 0.3px;
+    }
+    .balance-amount {
+      font-size: 2.6rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #f6e9a0, #f5d97a);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 10px rgba(245, 217, 122, 0.2);
+    }
+    .earn-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      margin: 1.8rem 0 1.2rem 0;
+    }
+    .earn-item {
+      background: white;
+      padding: 0.9rem 1.4rem;
+      border-radius: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.02), 0 2px 4px rgba(0,20,30,0.04);
+      border: 1px solid rgba(255,255,255,0.8);
+      transition: all 0.15s;
+    }
+    .earn-item:hover {
+      background: #f7fcff;
+      border-color: #b6d4e6;
+      box-shadow: 0 8px 14px rgba(29, 78, 100, 0.08);
+      transform: scale(1.01);
+    }
+    .earn-info {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+    .earn-icon {
+      font-size: 1.5rem;
+      line-height: 1;
+    }
+    .earn-name {
+      font-weight: 500;
+      color: #154c61;
+    }
+    .earn-points {
+      background: #e4f0f7;
+      padding: 0.2rem 0.9rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #19647e;
+      letter-spacing: 0.2px;
+    }
+    .earn-btn {
+      background: #1b6b85;
+      border: none;
+      color: white;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 0.4rem 1.3rem;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: 0.12s ease;
+      box-shadow: 0 4px 8px rgba(20, 80, 100, 0.2);
+      border: 1px solid rgba(255,255,255,0.2);
+      letter-spacing: 0.3px;
+    }
+    .earn-btn:active {
+      transform: scale(0.94);
+      background: #0f4b60;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .earn-btn:focus-visible {
+      outline: 2px solid #aad0e6;
+    }
+    .action-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1.6rem;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+    .reset-btn {
+      background: rgba(11, 43, 63, 0.06);
+      border: 1px solid rgba(11, 43, 63, 0.1);
+      padding: 0.5rem 1.4rem;
+      border-radius: 60px;
+      font-weight: 500;
+      color: #1c4d61;
+      cursor: pointer;
+      transition: 0.12s;
+      backdrop-filter: blur(2px);
+      font-size: 0.9rem;
+      letter-spacing: 0.3px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .reset-btn:active {
+      background: rgba(11, 43, 63, 0.15);
+      transform: scale(0.96);
+    }
+    .status-badge {
+      background: #dcecf5;
+      border-radius: 60px;
+      padding: 0.3rem 1.2rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #135269;
+      border: 1px solid rgba(255,255,255,0.5);
+      backdrop-filter: blur(2px);
+    }
+    .footnote {
+      margin-top: 1.6rem;
+      text-align: center;
+      font-size: 0.7rem;
+      color: #3f6e81;
+      letter-spacing: 0.2px;
+      border-top: 1px solid rgba(11, 43, 63, 0.05);
+      padding-top: 1.2rem;
+    }
+    @media (max-width: 420px) {
+      .card { padding: 1.5rem 1rem; }
+      .balance-amount { font-size: 2.2rem; }
+      .earn-item { flex-wrap: wrap; gap: 0.6rem; }
+      .earn-btn { width: 100%; text-align: center; }
+    }
+  </style>
 </head>
 <body>
-    <h1>Redirecting you...</h1>
-    <p>If it doesn't open automatically, <a href="https://t.co/GEIfQFOklp">click here</a></p>
+  <div class="card" role="main">
+    <h1>
+      ⚡ earn
+      <small>short</small>
+    </h1>
+
+    <!-- balance display -->
+    <div class="balance-box">
+      <span class="balance-label">🪙 total</span>
+      <span class="balance-amount" id="balanceDisplay">0</span>
+    </div>
+
+    <!-- earn actions -->
+    <div class="earn-grid">
+      <div class="earn-item">
+        <div class="earn-info">
+          <span class="earn-icon">📰</span>
+          <span class="earn-name">read</span>
+          <span class="earn-points">+5</span>
+        </div>
+        <button class="earn-btn" data-amount="5" aria-label="Earn 5 points by reading">earn</button>
+      </div>
+
+      <div class="earn-item">
+        <div class="earn-info">
+          <span class="earn-icon">👍</span>
+          <span class="earn-name">like</span>
+          <span class="earn-points">+3</span>
+        </div>
+        <button class="earn-btn" data-amount="3" aria-label="Earn 3 points by liking">earn</button>
+      </div>
+
+      <div class="earn-item">
+        <div class="earn-info">
+          <span class="earn-icon">💬</span>
+          <span class="earn-name">comment</span>
+          <span class="earn-points">+8</span>
+        </div>
+        <button class="earn-btn" data-amount="8" aria-label="Earn 8 points by commenting">earn</button>
+      </div>
+
+      <div class="earn-item">
+        <div class="earn-info">
+          <span class="earn-icon">⭐</span>
+          <span class="earn-name">bonus</span>
+          <span class="earn-points">+12</span>
+        </div>
+        <button class="earn-btn" data-amount="12" aria-label="Earn 12 bonus points">earn</button>
+      </div>
+    </div>
+
+    <!-- action row: reset + status -->
+    <div class="action-row">
+      <button class="reset-btn" id="resetBtn" aria-label="Reset earnings to zero">⟲ reset</button>
+      <span class="status-badge" id="statusMessage">ready</span>
+    </div>
+    <div class="footnote">
+      tap <strong>earn</strong> · balance updates instantly
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      "use strict";
+
+      // DOM elements
+      const balanceEl = document.getElementById('balanceDisplay');
+      const statusEl = document.getElementById('statusMessage');
+      const earnBtns = document.querySelectorAll('.earn-btn');
+      const resetBtn = document.getElementById('resetBtn');
+
+      // --- state ---
+      let currentBalance = 0;
+
+      // --- helpers ---
+      function updateUI() {
+        balanceEl.textContent = currentBalance;
+        // optional micro‑feedback: status stays 'ready' by default
+        // we only change status on earn/reset, then reset after a moment
+      }
+
+      function setStatus(text, isTemporary = true) {
+        statusEl.textContent = text;
+        if (isTemporary) {
+          // revert to 'ready' after 1.2s, but only if not overwritten
+          setTimeout(() => {
+            // if status hasn't been changed by another action, set to 'ready'
+            if (statusEl.textContent === text) {
+              statusEl.textContent = 'ready';
+            }
+          }, 1200);
+        }
+      }
+
+      // --- core actions ---
+      function addEarn(amount) {
+        if (typeof amount !== 'number' || isNaN(amount) || amount <= 0) {
+          setStatus('⚠️ invalid', true);
+          return;
+        }
+        currentBalance += amount;
+        updateUI();
+        setStatus(`+${amount} earned ✨`, true);
+      }
+
+      function resetBalance() {
+        currentBalance = 0;
+        updateUI();
+        setStatus('↺ reset', true);
+      }
+
+      // --- event listeners ---
+      // earn buttons
+      earnBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          const raw = this.getAttribute('data-amount');
+          const amount = parseInt(raw, 10);
+          if (!isNaN(amount) && amount > 0) {
+            addEarn(amount);
+          } else {
+            setStatus('⚠️ error', true);
+          }
+        });
+      });
+
+      // reset button
+      resetBtn.addEventListener('click', function(e) {
+        resetBalance();
+      });
+
+      // optional: if user clicks outside, keep status consistent, but we don't need extra.
+
+      // extra: keyboard shortcut (optional) – 'r' for reset
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'r' || e.key === 'R') {
+          if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+            e.preventDefault();
+            resetBalance();
+          }
+        }
+      });
+
+      // set initial balance (0)
+      updateUI();
+      setStatus('ready', false); // permanent until action
+
+      // tiny extra: if balance updates, we can also show a small badge,
+      // but we already have status.
+
+      console.log('🪙 earn system ready · short & sweet');
+    })();
+  </script>
 </body>
 </html>
